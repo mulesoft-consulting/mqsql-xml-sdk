@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="My SQL XML SDK Sample"
+        prefix="module-hello"
+        doc:description="This module relies entirely in runtime provided components (no other Plugin dependencies)"
+		xmlns:db="http://www.mulesoft.org/schema/mule/db"
+        xmlns="http://www.mulesoft.org/schema/mule/module"
+        xmlns:mule="http://www.mulesoft.org/schema/mule/core"
+        xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+           http://www.mulesoft.org/schema/mule/module http://www.mulesoft.org/schema/mule/module/current/mule-module.xsd
+           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+           http://www.mulesoft.org/schema/mule/db  http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="31c58c95-3fa2-4c74-ba5f-1e5c57e7712b" >
+		<db:my-sql-connection host="hostname" port="0000" user="user" password="password" database="database" />
+	</db:config>
+    <operation name="Get Value from Database" doc:description="Gets values from database and filters on basis of Id">
+        <parameters>
+            <parameter name="Id" type="string"/>
+        </parameters>
+        <body>
+           <db:select doc:name="Select Types" doc:id="a891c099-738c-4272-99e9-32aa67b0d4f3" config-ref="Database_Config">
+			<db:sql>#["SELECT * FROM Types WHERE Id = " ++ vars.Id]</db:sql>
+		</db:select>
+        </body>
+        <output type="string" doc:description="Payload's output"/>
+    </operation>
+
+ </module>
+   
