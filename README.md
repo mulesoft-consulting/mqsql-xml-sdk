@@ -10,7 +10,8 @@
 2) Publish this connector your your exchange.
 
 3) In the API in which you want to use this connector, download the connector into pallette, and add below code to the pom.xml:
-```<build>
+```
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
